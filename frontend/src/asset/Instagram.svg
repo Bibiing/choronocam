@@ -1,0 +1,36 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Instagram" filter="url(#filter0_d_12_58)">
+<g id="Instagram_2">
+<path id="Vector" d="M20.0001 4C13.374 4 8.00128 9.37276 8.00128 16.0013C8.00128 22.6276 13.374 28 20.0001 28C26.6265 28 31.9991 22.6276 31.9991 16.0013C31.9991 9.37276 26.6265 4 20.0001 4Z" fill="url(#paint0_linear_12_58)"/>
+<g id="Group">
+<g id="Group_2">
+<path id="Vector_2" d="M20.0001 20.2849C22.3629 20.2849 24.2853 18.3635 24.2853 16.0016C24.2853 13.6383 22.3629 11.7156 20.0001 11.7156C17.6374 11.7156 15.7151 13.6383 15.7151 16.0016C15.7151 18.3633 17.6375 20.2849 20.0001 20.2849ZM16.7545 16.0016C16.7545 14.2105 18.2104 12.7534 20.0001 12.7534C21.7898 12.7534 23.2459 14.2105 23.2459 16.0016C23.2459 17.7913 21.7898 19.2473 20.0001 19.2473C18.2104 19.2473 16.7545 17.7913 16.7545 16.0016Z" fill="white"/>
+</g>
+<path id="Vector_3" d="M24.2738 23.1178H15.7266C14.1225 23.1178 12.8175 21.8127 12.8175 20.2086V11.792C12.8175 10.1879 14.1225 8.88281 15.7266 8.88281H24.2738C25.8779 8.88281 27.1829 10.1879 27.1829 11.792V20.2086C27.1829 21.8127 25.8779 23.1178 24.2738 23.1178ZM15.7266 9.94421C14.708 9.94421 13.8789 10.7731 13.8789 11.792V20.2086C13.8789 21.2273 14.7078 22.0564 15.7266 22.0564H24.2738C25.2924 22.0564 26.1215 21.2274 26.1215 20.2086V11.792C26.1215 10.7731 25.2926 9.94421 24.2738 9.94421H15.7266Z" fill="white"/>
+</g>
+<path id="Vector_4" d="M24.3435 11.2267C23.9688 11.2267 23.6671 11.5318 23.6671 11.9039C23.6671 12.2784 23.9688 12.5795 24.3435 12.5795C24.7155 12.5795 25.0206 12.2784 25.0206 11.9039C25.0206 11.5318 24.7155 11.2267 24.3435 11.2267Z" fill="white"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_12_58" x="0.00128174" y="0" width="39.9978" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="4"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0.0627451 0 0 0 0 0.160784 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_12_58"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_12_58" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_12_58" x1="27.8726" y1="25.0565" x2="12.1278" y2="6.94412" gradientUnits="userSpaceOnUse">
+<stop stop-color="#5D3FD2"/>
+<stop offset="0.4244" stop-color="#B829A9"/>
+<stop offset="0.5009" stop-color="#BE289D"/>
+<stop offset="0.6383" stop-color="#D0257E"/>
+<stop offset="0.7849" stop-color="#E62256"/>
+<stop offset="0.8147" stop-color="#E83156"/>
+<stop offset="0.8718" stop-color="#EE5755"/>
+<stop offset="0.9495" stop-color="#F89554"/>
+<stop offset="1" stop-color="#FFC153"/>
+</linearGradient>
+</defs>
+</svg>

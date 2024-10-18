@@ -1,0 +1,23 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Linkedin" filter="url(#filter0_d_12_66)">
+<g id="Linked in">
+<path id="XMLID 108" d="M31.9989 16C31.9989 9.37234 26.6264 4 19.9998 4C13.3711 4 7.99908 9.37218 7.99908 16C7.99908 22.6268 13.3713 28 19.9998 28C26.6266 28 31.9989 22.6268 31.9989 16Z" fill="#3D83D9"/>
+<g id="Group">
+<path id="Vector" d="M17.0633 13.0717H14.2855V21.0104H17.0633V13.0717Z" fill="white"/>
+<path id="Vector_2" d="M15.6745 9.10217C14.8044 9.10217 14.1232 9.90178 14.3194 10.8025C14.4334 11.3257 14.8602 11.7463 15.3852 11.8518C16.2806 12.0316 17.0633 11.3538 17.0633 10.4912C17.0633 9.72531 16.4427 9.10217 15.6745 9.10217Z" fill="white"/>
+<path id="Vector_3" d="M26.1929 15.5103C26.0061 14.014 25.2576 13.0715 23.235 13.0715C21.7994 13.0715 21.2285 13.2955 20.8993 13.9221V13.0715H18.6505V21.0103H20.9648V16.8547C20.9648 15.8173 21.1613 15.0337 22.4441 15.0337C23.7084 15.0337 23.81 15.9981 23.81 16.922V21.0105H26.1931C26.1929 21.0105 26.2371 15.8601 26.1929 15.5103Z" fill="white"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_12_66" x="-0.000915527" y="0" width="39.9998" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="4"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0.0627451 0 0 0 0 0.160784 0 0 0 0.1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_12_66"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_12_66" result="shape"/>
+</filter>
+</defs>
+</svg>
