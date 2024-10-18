@@ -21,6 +21,7 @@ college assignment to build a web cctv logger
   ![](./frontend/src/documentation/sign-up-desktop.png)
 
 > Mobile
-> | **Sign In Page** | **Sign Up Page** |
-> | ---------------- | ---------------- |
-> | ![Sign In Mobile](./frontend/src/documentation/sign-in-mobile.png) | ![Sign Up Mobile](./frontend/src/documentation/sign-up-mobile.png) |
+
+| **Sign In Page**                                                   | **Sign Up Page**                                                   |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| ![Sign In Mobile](./frontend/src/documentation/sign-in-mobile.png) | ![Sign Up Mobile](./frontend/src/documentation/sign-up-mobile.png) |
