@@ -20,11 +20,26 @@ college assignment to build a web cctv logger
 - **Sign Up Page**
   ![](./frontend/src/documentation/sign-up-desktop.png)
 
+-  **Home Page**
+  ![](./frontend/src/documentation/Main-in-desktop-1.png)
+  ![](./frontend/src/documentation/Main-in-desktop-2.png)
+  ![](./frontend/src/documentation/Main-in-desktop-3.png)
+
+-  **Playback Page**
+  ![](./frontend/src/documentation/Playback-in-Desktop.png)
+
+
 > Mobile
 
 | **Sign In Page**                                                   | **Sign Up Page**                                                   |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | ![Sign In Mobile](./frontend/src/documentation/sign-in-mobile.png) | ![Sign Up Mobile](./frontend/src/documentation/sign-up-mobile.png) |
+| **Home Page -1**                                                   | **Home Page -2**                                                   |
+| ![Home Mobile-1](./frontend/src/documentation/Main-in-mobile-1.png) | ![Home Mobile-2](./frontend/src/documentation/Main-in-mobile-2.png) |
+| **Home Page -3**                                                   | **Home Page -4**                                                   |
+| ![Home Mobile-3](./frontend/src/documentation/Main-in-mobile-3.png) | ![Home Mobile-4](./frontend/src/documentation/Main-in-mobile-4.png) |
+| **Home Page -5**                                                   | **Playback Page**                                                  |
+| ![Home Mobile-5](./frontend/src/documentation/Main-in-mobile-5.png) | ![Playback Page](./frontend/src/documentation/Playback-in-mobile.png)
 
 ---
 
