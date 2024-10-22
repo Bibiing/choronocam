@@ -8,6 +8,7 @@
   </head>
 
   <body class="bg-[#f8fbff] font-poppins">
+    <!-- Header -->
     <header class="bg-[#f0faff] shadow-md">
       <div
         class="container mx-auto px-4 py-4 flex justify-between items-center"
@@ -32,95 +33,89 @@
       </div>
     </header>
 
-    <!-- Container utama -->
-    <div class="relative w-full min-h-screen">
-      <!-- Form input tanggal dan waktu -->
-      <div
-        class="mt-12 w-full flex flex-col pl-10 pr-10 md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4"
+    <!-- Form input tanggal dan waktu -->
+    <form
+      class="mt-12 w-full flex flex-col pl-10 pr-10 md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4"
+      id="shorting"
+      action="/upload"
+      method="POST"
+    >
+      <div class="flex items-center space-x-2">
+        <label for="date" class="text-black mr-3">Date</label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          class="flex items-center rounded-md pl-2 py-2 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          required
+        />
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <label for="timeStart" class="text-black mr-3">Time Start</label>
+        <input
+          type="time"
+          id="timeStart"
+          name="timeStart"
+          class="flex items-center space-x-2 rounded-md pl-2 py-2 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          required
+        />
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <label for="timeEnd" class="text-black mr-3">Time End</label>
+        <input
+          type="time"
+          id="timeEnd"
+          name="timeEnd"
+          class="flex items-center space-x-2 rounded-md pl-2 py-2 border border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          required
+        />
+      </div>
+
+      <!-- Tombol submit -->
+      <button
+        type="submit"
+        class="bg-[#1679ab] text-white font-bold rounded-md px-4 py-2 hover:bg-[#125C81] transition duration-300"
       >
-        <div class="flex items-center space-x-2">
-          <label class="text-black mr-11">Date</label>:
-          <div
-            class="flex items-center space-x-2 bg-[#1679ab] text-white rounded-md pl-2 py-2 text-left"
-          >
-            <div>YYYY-MM-DD</div>
-            <button class="pr-1">
-              <img
-                src="..\src\asset\chevron-down-svgrepo-com.svg"
-                alt="button"
-                width="25"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="flex items-center space-x-2">
-          <label class="text-black mr-1.5">Time Start</label>:
-          <div
-            class="flex items-center space-x-2 bg-[#1679ab] text-white rounded-md pl-2 py-2 text-left"
-          >
-            <div>HH-MM-SS</div>
-            <button class="pr-1">
-              <img
-                src="..\src\asset\chevron-down-svgrepo-com.svg"
-                alt="button"
-                width="25"
-              />
-            </button>
-          </div>
-        </div>
-        <div class="flex items-center space-x-2">
-          <label class="text-black mr-3">Time End</label>:
-          <div
-            class="flex items-center space-x-2 bg-[#1679ab] text-white rounded-md pl-2 py-2 text-left"
-          >
-            <div>HH-MM-SS</div>
-            <button class="pr-1">
-              <img
-                src="..\src\asset\chevron-down-svgrepo-com.svg"
-                alt="button"
-                width="25"
-              />
-            </button>
-          </div>
-        </div>
-      </div>
+        Submit
+      </button>
+    </form>
 
-      <!-- Konten utama -->
-      <div
-        class="mt-3 flex justify-center items-center h-[320px] md:h-[580px] lg:h-[580px] bg-[#f0faff] w-[90%] lg:w-[1100px] mx-auto relative"
+    <!-- Konten utama -->
+    <div
+      class="mt-8 flex justify-center items-center h-[320px] md:h-[580px] lg:h-[580px] bg-[#f0faff] w-[90%] lg:w-[1100px] mx-auto relative shadow-md"
+    >
+      <div class="text-black text-[32px] font-extrabold font-['Inter']">
+        IMG
+      </div>
+    </div>
+
+    <!-- Informasi waktu -->
+    <div
+      class="mt-5 flex justify-center lg:justify-end md:justify-end md:pr-24 lg:pr-32 relative"
+    >
+      <div class="w-80 h-[67px] bg-[#1679ab] rounded-[10px] p-3 text-center">
+        <div class="text-white font-bold">YYYY-MM-DD HH:MM:SS</div>
+        <div class="text-white font-bold">Channel x</div>
+      </div>
+    </div>
+
+    <!-- Tombol bulat -->
+    <div class="flex justify-center space-x-16 mt-3">
+      <!-- Tombol pertama -->
+      <button
+        class="w-[50px] h-[50px] bg-[#1679ab] rounded-full shadow flex justify-center items-center focus:outline-none"
       >
-        <div class="text-black text-[32px] font-extrabold font-['Inter']">
-          IMG
-        </div>
-      </div>
+        <img src="../src/asset/next.svg" alt="back" width="35" />
+      </button>
 
-      <!-- Informasi waktu -->
-
-      <div
-        class="mt-5 flex justify-center lg:justify-end md:justify-end md:pr-24 lg:pr-32 relative"
+      <!-- Tombol kedua dengan rotasi -->
+      <button
+        class="w-[50px] h-[50px] bg-[#1679ab] rounded-full shadow flex justify-center items-center transform rotate-180 focus:outline-none"
       >
-        <div class="w-80 h-[67px] bg-[#1679ab] rounded-[10px] p-3 text-center">
-          <div class="text-white font-bold">YYYY-MM-DD HH:MM:SS</div>
-          <div class="text-white font-bold">Channel x</div>
-        </div>
-      </div>
-
-      <!-- Tombol bulat -->
-      <div class="flex justify-center space-x-16 mt-3">
-        <!-- Tombol pertama -->
-        <button
-          class="w-[50px] h-[50px] bg-[#1679ab] rounded-full shadow flex justify-center items-center focus:outline-none"
-        >
-          <img src="../src/asset/next.svg" alt="back" width="35" />
-        </button>
-
-        <!-- Tombol kedua dengan rotasi -->
-        <button
-          class="w-[50px] h-[50px] bg-[#1679ab] rounded-full shadow flex justify-center items-center transform rotate-180 focus:outline-none"
-        >
-          <img src="../src/asset/next.svg" alt="next" width="35" />
-        </button>
-      </div>
+        <img src="../src/asset/next.svg" alt="next" width="35" />
+      </button>
     </div>
   </body>
 </html>
