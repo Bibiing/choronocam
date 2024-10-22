@@ -8,35 +8,32 @@
   </head>
 
   <body class="bg-[#f8fbff] font-poppins">
-    <!-- Container utama -->
-    <div class="relative w-full min-h-screen">
-      <!-- Header -->
+    <header class="bg-[#f0faff] shadow-md">
       <div
-        class="mb-10 w-full h-[70px] bg-[#f0faff] shadow-md flex justify-between items-center px-6"
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
       >
-        <button class="flex items-center space-x-2">
-          <a href="./main.html">
-            <span class="text-[#365486] text-[28px] font-extrabold">Chrono</span>
-            <span class="text-[#9bddff] text-[28px] font-extrabold">Cam</span>
-          </a>
-        </button>
+        <a class="text-2xl font-extrabold" href="main.html">
+          <span class="text-[#365486]">Chrono</span>
+          <span class="text-[#9bddff]">Cam</span>
+        </a>
         <div class="relative transform -translate-x-10">
-          <div>
-            <button
-              class="bg-[#1679ab] text-white font-bold rounded-full w-[100px] h-[35px] absolute z-10"
-            >
-              <a href="./sign-up.html">Sign Up</a>
-            </button>
-          </div>
-          <div>
-            <button
-              class="text-right pr-4 bg-[#9bddff] text-[#1679ab] font-bold rounded-full w-[134px] h-[35px] relative left-10 z-0"
-            >
-              <a href="./sign-in.html">Log In</a>
-            </button>
-          </div>
+          <button
+            class="bg-[#1679ab] text-white font-bold rounded-full w-[100px] h-[40px] absolute z-10 hover:bg-[#125C81]"
+          >
+            <a href="./sign-up.html">Sign Up</a>
+          </button>
+
+          <button
+            class="text-right pr-4 bg-[#9BDDFF] text-[#1679ab] font-bold rounded-full w-[134px] h-[40px] relative left-10 z-0 hover:bg-[#146087] hover:text-[#FFFFFF]"
+          >
+            <a href="./sign-in.html">Log In</a>
+          </button>
         </div>
       </div>
+    </header>
+
+    <!-- Container utama -->
+    <div class="relative w-full min-h-screen">
       <!-- Form input tanggal dan waktu -->
       <div
         class="mt-12 w-full flex flex-col pl-10 pr-10 md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4"
