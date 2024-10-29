@@ -25,7 +25,7 @@
       <div class="bg-sky-50 rounded-3xl p-8 shadow-lg">
         <h2 class="text-3xl font-semibold text-center">Sign Up</h2>
         <p class="text-gray-400 text-center mt-2 mb-6">Create your account</p>
-        <form action="#">
+        <form action="/addUser" method="POST">
           <!-- First and Last Name -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -34,6 +34,7 @@
               >
               <input
                 type="text"
+                name="firstName"
                 id="first-name"
                 class="w-full p-2 border border-gray-300 rounded"
                 placeholder="John"
@@ -46,6 +47,7 @@
               >
               <input
                 type="text"
+                name="lastName"
                 id="last-name"
                 class="w-full p-2 border border-gray-300 rounded"
                 placeholder="Doe"
@@ -59,6 +61,7 @@
             <label class="block text-gray-600 mb-1" for="email">Email</label>
             <input
               type="email"
+              name="email"
               id="email"
               class="w-full p-2 border border-gray-300 rounded"
               placeholder="johndoe@example.com"
@@ -73,6 +76,7 @@
             >
             <input
               type="tel"
+              name="phone"
               id="phone"
               class="w-full p-2 border border-gray-300 rounded"
               placeholder="+62 812 3456 7890"
@@ -88,6 +92,7 @@
               >
               <input
                 type="password"
+                name="password"
                 id="password"
                 class="w-full p-2 border border-gray-300 rounded"
                 placeholder="********"
@@ -100,6 +105,7 @@
               >
               <input
                 type="password"
+                name="confirmPassword"
                 id="confirm-password"
                 class="w-full p-2 border border-gray-300 rounded"
                 placeholder="********"
