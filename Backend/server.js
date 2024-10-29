@@ -32,23 +32,49 @@ app.post('/addUser', async (req, res) => {
     const { firstName, lastName, email, phone, password, confirmPassword } = req.body;
     const newUser = new User({ firstName, lastName, email, phone, password, confirmPassword });
     await newUser.save();
-    res.redirect('/users');
+    res.redirect('/');
 });
+
 
 
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
-    // Temukan pengguna berdasarkan email dan password
-    const user = await User.findOne({ email, password });
+    
+    try {
+        const user = await User.findOne({ email: email });
+        
+        if (!user) {
+            return res.render('sign-in', { error: 'Email tidak ditemukan!' });
+        }
 
-    if (user) {
-        // Simpan nama pengguna di sesi
+        // Cek apakah password yang dimasukkan cocok
+        const isPasswordValid = password === user.password; // Sesuaikan dengan enkripsi jika ada
+        if (!isPasswordValid) {
+            return res.render('sign-in', { error: 'Password salah!' });
+        }
+
+        // Jika email dan password benar, simpan sesi dan arahkan ke halaman utama
         req.session.username = `${user.firstName} ${user.lastName}`;
-        res.redirect('/'); // Arahkan kembali ke halaman utama
-    } else {
-        res.send('Invalid email or password'); // Tangani kesalahan login
+        res.redirect('/');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Terjadi kesalahan pada server');
     }
 });
+
+// app.post('/login', async (req, res) => {
+//     const { email, password } = req.body;
+//     // Temukan pengguna berdasarkan email dan password
+//     const user = await User.findOne({ email, password });
+
+//     if (user) {
+//         // Simpan nama pengguna di sesi
+//         req.session.username = `${user.firstName} ${user.lastName}`;
+//         res.redirect('/'); // Arahkan kembali ke halaman utama
+//     } else {
+//         res.send('Invalid email or password'); // Tangani kesalahan login
+//     }
+// });
 
 
 
