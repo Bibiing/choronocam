@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Gmail from "../../assets/Gmail.png";
+import Popup from "../Popup";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -10,6 +11,12 @@ const SignUp = () => {
     email: "",
     password: "",
     termsAgreed: false,
+  });
+
+  const [popup, setPopup] = useState({
+    isOpen: false,
+    message: "",
+    type: "info",
   });
 
   const handleChange = (e) => {
@@ -39,16 +46,35 @@ const SignUp = () => {
         navigate(`/verify-email?email=${formData.email}`);
       } else {
         const errorData = await response.json();
-        alert(errorData.message);
+        setPopup({
+          isOpen: true,
+          message: errorData.message,
+          type: "error",
+        });
       }
     } catch (error) {
       console.error("Error during signup:", error);
-      alert("Terjadi kesalahan saat mendaftar. Silakan coba lagi.");
+      setPopup({
+        isOpen: true,
+        message: "Terjadi kesalahan saat mendaftar. Silakan coba lagi.",
+        type: "error",
+      });
     }
+  };
+
+  const closePopup = () => {
+    setPopup({ ...popup, isOpen: false });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-6 bg-gray-100 font-poppins">
+      <Popup
+        isOpen={popup.isOpen}
+        onClose={closePopup}
+        message={popup.message}
+        type={popup.type}
+      />
+
       <div className="bg-white rounded-3xl p-8 shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-semibold text-center">Sign Up</h2>
         <p className="text-gray-400 text-center mt-2 mb-6">
@@ -119,11 +145,7 @@ const SignUp = () => {
             href="http://localhost:8080/auth/google"
             className="mt-4 flex items-center justify-center w-full py-2 bg-gray-100 rounded text-gray-600 hover:bg-gray-200 transition duration-200"
           >
-            <img
-              src={Gmail}
-              alt="Google logo"
-              className="w-5 h-5 mr-2"
-            />
+            <img src={Gmail} alt="Google logo" className="w-5 h-5 mr-2" />
             Sign up with Google
           </a>
 
