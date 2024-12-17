@@ -11,7 +11,7 @@ import setupAuthRoutes from "./src/routes/authGoogle.js";
 import manualAuthRoutes from "./src/routes/authManual.js";
 import userRoutes from "./src/routes/userRoutes.js";
 import imageRoutes from "./src/routes/imageRoutes.js";
-import uploadRoutes from "./src/routes/uploadRoutes.js";
+import uploadRoutes from "./src/uploads/image.js";
 
 // Configuration and middleware
 dotenv.config();
