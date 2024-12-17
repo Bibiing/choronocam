@@ -1,75 +1,73 @@
 import dotenv from "dotenv";
 import express from "express";
-import passport from "passport";
 import mongoose from "mongoose";
-import session from "express-session";
-import cors from "cors";
 import helmet from "helmet";
+import cors from "cors";
+import session from "express-session";
+import passport from "passport";
+
+// Import route handlers
 import setupAuthRoutes from "./src/routes/authGoogle.js";
 import manualAuthRoutes from "./src/routes/authManual.js";
 import userRoutes from "./src/routes/userRoutes.js";
 import imageRoutes from "./src/routes/imageRoutes.js";
-import upload from "./src/uploads/image.js";
+import uploadRoutes from "./src/routes/uploadRoutes.js";
 
+// Configuration and middleware
 dotenv.config();
-
-const uri = process.env.MONGODB_URI;
-mongoose
-  .connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((error) => console.error("Connection error:", error));
 
 const app = express();
 
+// Database Connection
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("MongoDB connected successfully");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    process.exit(1);
+  }
+};
+
+// Security Middleware
 app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "https://accounts.google.com"],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://accounts.google.com",
+          "https://vercel.live",
+        ],
         styleSrc: ["'self'", "'unsafe-inline'"],
         imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'", "https://chronocamm.vercel.app/"],
+        connectSrc: ["'self'", "https://chronocam.vercel.app"],
       },
     },
-    // Disable X-Powered-By header to prevent information disclosure
-    hidePoweredBy: true,
-    // Prevent clickjacking attacks
-    frameguard: {
-      action: "deny",
-    },
-    // Enforce HTTPS
-    hsts: {
-      maxAge: 31536000, // 1 year in seconds
-      includeSubDomains: true,
-      preload: true,
-    },
-    // Prevent MIME type sniffing
-    noSniff: true,
-    // Referrer policy for privacy
-    referrerPolicy: {
-      policy: "strict-origin-when-cross-origin",
-    },
+    referrerPolicy: { policy: "strict-origin-when-cross-origin" },
   })
 );
 
-// CORS middleware
+// CORS Configuration
 app.use(
   cors({
-    origin: "https://chronocamm.vercel.app/",
+    origin: "https://chronocam.vercel.app",
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
 
-// Middleware untuk parsing JSON
+// Middleware
 app.use(express.json({ limit: "1gb" }));
+app.use(express.urlencoded({ extended: true }));
 
-// Setup session
+// Session Configuration
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -83,23 +81,18 @@ app.use(
   })
 );
 
+// Passport Initialization
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Setup auth routes
+// Routes
 setupAuthRoutes(app);
-
-// Rute manual auth
 app.use("/auth", manualAuthRoutes);
-
-// Rute untuk API pengguna
 app.use("/api", userRoutes);
-
-// Rute untuk upload gambar
-app.use("/upload", upload);
-
+app.use("/upload", uploadRoutes);
 app.use("/images", imageRoutes);
 
+// Global Error Handler
 app.use((err, req, res, next) => {
   console.error("Unhandled Error:", err);
   res.status(500).json({
@@ -108,7 +101,25 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Server Startup
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+const startServer = async () => {
+  await connectDB();
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+};
+
+startServer();
+
+// Graceful Shutdown
+process.on("SIGINT", async () => {
+  try {
+    await mongoose.connection.close();
+    console.log("MongoDB connection closed");
+    process.exit(0);
+  } catch (error) {
+    console.error("Error during shutdown:", error);
+    process.exit(1);
+  }
 });
