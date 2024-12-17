@@ -1,9 +1,5 @@
 {
   "version": 2,
-  "build": {
-    "command": "npm run build",
-    "outputDirectory": "dist"
-  },
   "routes": [
     {
       "src": "/(.*)",
