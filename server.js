@@ -46,7 +46,7 @@ app.use(
         ],
         styleSrc: ["'self'", "'unsafe-inline'"],
         imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'", "https://chronocam.vercel.app"],
+        connectSrc: ["'self'", "https://chronocamm.vercel.app"],
       },
     },
     referrerPolicy: { policy: "strict-origin-when-cross-origin" },
@@ -56,7 +56,7 @@ app.use(
 // CORS Configuration
 app.use(
   cors({
-    origin: "https://chronocam.vercel.app",
+    origin: "https://chronocamm.vercel.app",
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
