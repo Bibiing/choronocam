@@ -28,7 +28,7 @@
       "dest": "server.js"
     },
     {
-      "src": "/(.*)",
+      "src": "/",
       "dest": "index.html"
     }
   ]
