@@ -5,6 +5,7 @@ import helmet from "helmet";
 import cors from "cors";
 import session from "express-session";
 import passport from "passport";
+import MongoStore from "connect-mongo";
 
 // Import route handlers
 import setupAuthRoutes from "./src/routes/authGoogle.js";
@@ -47,10 +48,7 @@ app.use(
 // Database Connection
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB connected successfully");
   } catch (error) {
     console.error("MongoDB connection error:", error);
@@ -78,6 +76,11 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+      autoRemove: "interval",
+      autoRemoveInterval: 10, // Minutes
+    }),
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
       secure: process.env.NODE_ENV === "production",
