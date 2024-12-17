@@ -40,7 +40,7 @@ app.use(
         imgSrc: ["'self'", "data:", "https:"],
         connectSrc: [
           "'self'",
-          "https://chronocamm.vercel.app/",
+          "https://chronocamm.vercel.app",
           "https://vercel.live",
         ],
       },
@@ -62,7 +62,7 @@ const connectDB = async () => {
 // CORS Configuration
 app.use(
   cors({
-    origin: "https://chronocamm.vercel.app/",
+    origin: "https://chronocamm.vercel.app",
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -140,3 +140,16 @@ process.on("SIGINT", async () => {
     process.exit(1);
   }
 });
+
+// At the end of your server configuration, add:
+if (process.env.NODE_ENV === "production") {
+  const path = require("path");
+
+  // Serve static files from frontend build
+  app.use(express.static(path.join(__dirname, "frontend/dist")));
+
+  // For any route not handled by API, serve the React app
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend/dist/index.html"));
+  });
+}
