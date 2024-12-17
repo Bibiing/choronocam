@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm run build && node server.js",
+    "build": "vite build",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server.js",
     "client": "vite",
-    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
