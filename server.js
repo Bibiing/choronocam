@@ -26,7 +26,11 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'", "https://vercel.live"],
+        defaultSrc: [
+          "'self'",
+          "https://vercel.live",
+          "https://chronocamm.vercel.app",
+        ],
         scriptSrc: [
           "'self'",
           "'unsafe-inline'",
@@ -45,11 +49,13 @@ app.use(
           "https://chronocamm.vercel.app",
           "https://vercel.live",
         ],
+        fontSrc: ["'self'", "https://fonts.googleapis.com"],
       },
     },
     referrerPolicy: { policy: "strict-origin-when-cross-origin" },
   })
 );
+
 // Database Connection
 const connectDB = async () => {
   try {
@@ -64,11 +70,7 @@ const connectDB = async () => {
 // CORS Configuration
 app.use(
   cors({
-    origin: [
-      "https://chronocamm.vercel.app",
-      "https://www.chronocamm.vercel.app",
-      "http://localhost:3000",
-    ],
+    origin: ["https://chronocamm.vercel.app", "http://localhost:3000"],
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -118,7 +120,6 @@ app.use("/images", imageRoutes);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Move this block BEFORE the global error handler
 if (process.env.NODE_ENV === "production") {
   const distPath = path.join(__dirname, "dist");
 
