@@ -18,11 +18,11 @@ const ProfilePage = () => {
   } = useProfile();
 
   return (
-    <div className="flex flex-col min-h-screen font-poppins">
+    <div className="flex flex-col h-[100vh] font-poppins">
       <Header />
       <main className="flex-grow container max-w-5xl mx-auto px-4 flex items-center justify-center">
         <div className="w-full max-w-sm sm:max-w-lg md:max-w-2xl">
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#365486] font-bold text-center mb-4 md:mb-8">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#365486] font-bold text-center mt-20 md:mt-28 lg:mt-26  mb-4 md:mb-8">
             Your Profile
           </h1>
 
