@@ -25,9 +25,16 @@ export const uploadMedia = async (req, res) => {
       const newFile = new File({
         url: datafile.url,
         userId: req.body.userId,
-        date: req.body.date,
-        time: req.body.time,
+        // Menggunakan waktu lokal Surabaya (Asia/Jakarta)
+        date: new Date()
+          .toLocaleString("en-GB", { timeZone: "Asia/Jakarta" })
+          .split(",")[0], // Format DD/MM/YYYY
+        time: new Date()
+          .toLocaleString("en-GB", { timeZone: "Asia/Jakarta" })
+          .split(",")[1]
+          .trim(), // Format HH:MM:SS
       });
+
       await newFile.save();
 
       uploadResults.push(datafile);

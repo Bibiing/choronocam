@@ -50,7 +50,9 @@ const Header = () => {
 
   const fetchUsername = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/users/${userId}`);
+      const response = await fetch(
+        `https://chrono-sand.vercel.app/api/users/${userId}`
+      );
       const data = await response.json();
       if (data.username) {
         localStorage.setItem("username", data.username);
@@ -73,10 +75,13 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:8080/auth/logout", {
-        method: "POST",
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://chrono-sand.vercel.app/auth/logout",
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
 
       if (response.ok) {
         localStorage.removeItem("userId");

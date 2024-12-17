@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080/api";
+const API_BASE_URL = "https://chronocamm.vercel.app/api";
 
 // Fetch user data
 export const fetchUserData = async (userId) => {

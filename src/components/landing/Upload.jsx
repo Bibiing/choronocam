@@ -77,7 +77,7 @@ const UploadForm = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/upload", {
+      const response = await fetch("https://chrono-sand.vercel.app/upload", {
         method: "POST",
         body: formData,
       });

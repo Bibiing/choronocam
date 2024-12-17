@@ -22,7 +22,7 @@ export async function sendVerificationEmail(email, verificationCode) {
     to: email,
     subject: "Verifikasi Email Anda",
     text: `Halo,\n\nSilakan verifikasi email Anda dengan Code: ${verificationCode}\n\n pada tautan berikut:\n${verificationLink}\n\nTerima kasih!`,
-    html: `<p>Halo,</p><p>Silakan verifikasi email Anda dengan Code: ${verificationCode}</p> <p>pada tautan berikut:</p><a href="${verificationLink}">Verifikasi Email</a><p>Terima kasih!</p>`,
+    html: `<p>Halo,</p><p>Silakan verifikasi email Anda dengan Code: ${verificationCode}</p> Verifikasi Email</a><p>Terima kasih!</p>`,
   };
 
   try {

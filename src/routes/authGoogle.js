@@ -12,7 +12,7 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL:
         process.env.NODE_ENV === "production"
-          ? "https://choronocam.vercel.app/auth/google/callback"
+          ? "https://chronocamm.vercel.app/auth/google/callback"
           : "http://localhost:8080/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
@@ -77,7 +77,7 @@ passport.deserializeUser(async (id, done) => {
 const setupAuthRoutes = (app) => {
   app.get(
     "/auth/google",
-    passport.authenticate("google", { scope: ["profile", "email"] }) // Add 'email' scope to access user's email
+    passport.authenticate("google", { scope: ["profile", "email"] })
   );
 
   // Google callback route
@@ -95,10 +95,8 @@ const setupAuthRoutes = (app) => {
 
         // Redirect to home page after successful login or signup
         return res.redirect(
-          `http://localhost:5173/login-success?id=${user.id}`
+          `https://chronocamm.vercel.app/login-success?id=${user.id}`
         );
-
-        // return res.redirect(`http://localhost:5173/?id=${user.id}`);
       });
     })(req, res, next);
   });

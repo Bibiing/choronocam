@@ -13,13 +13,16 @@ const SignIn = () => {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:8080/auth/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        "https://chrono-sand.vercel.app/auth/signin",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
@@ -89,14 +92,10 @@ const SignIn = () => {
         <div className="text-center mt-6">
           <p className="text-gray-500">or sign in with</p>
           <a
-            href="http://localhost:8080/auth/google"
+            href="https://chrono-sand.vercel.app/auth/google"
             className="mt-4 inline-flex items-center justify-center w-full p-3 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-md text-base font-normal transition duration-200"
           >
-            <img
-              src={Gmail}
-              alt="Google logo"
-              className="w-6 h-6 mr-2"
-            />
+            <img src={Gmail} alt="Google logo" className="w-6 h-6 mr-2" />
             Sign in with Google
           </a>
         </div>

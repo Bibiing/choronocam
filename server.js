@@ -4,6 +4,7 @@ import passport from "passport";
 import mongoose from "mongoose";
 import session from "express-session";
 import cors from "cors";
+import helmet from "helmet";
 import setupAuthRoutes from "./src/routes/authGoogle.js";
 import manualAuthRoutes from "./src/routes/authManual.js";
 import userRoutes from "./src/routes/userRoutes.js";
@@ -12,7 +13,6 @@ import upload from "./src/uploads/image.js";
 
 dotenv.config();
 
-// Koneksi ke MongoDB
 const uri = process.env.MONGODB_URI;
 mongoose
   .connect(uri, {
@@ -24,13 +24,42 @@ mongoose
 
 const app = express();
 
-// Middleware CORS
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "https://accounts.google.com"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:", "https:"],
+        connectSrc: ["'self'", "https://chronocamm.vercel.app/"],
+      },
+    },
+    // Disable X-Powered-By header to prevent information disclosure
+    hidePoweredBy: true,
+    // Prevent clickjacking attacks
+    frameguard: {
+      action: "deny",
+    },
+    // Enforce HTTPS
+    hsts: {
+      maxAge: 31536000, // 1 year in seconds
+      includeSubDomains: true,
+      preload: true,
+    },
+    // Prevent MIME type sniffing
+    noSniff: true,
+    // Referrer policy for privacy
+    referrerPolicy: {
+      policy: "strict-origin-when-cross-origin",
+    },
+  })
+);
+
+// CORS middleware
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? "https://choronocam.vercel.app"
-        : "http://localhost:5173",
+    origin: "https://chronocamm.vercel.app/",
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -48,7 +77,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 24 * 60 * 60 * 1000,
-      secure: process.env.NODE_ENV === "production", // Use secure in production
+      secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     },
   })
@@ -71,13 +100,11 @@ app.use("/upload", upload);
 
 app.use("/images", imageRoutes);
 
-// app.use("/user", userRoutes);
-// Global error handler
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  console.error("Unhandled Error:", err);
   res.status(500).json({
     message: "An unexpected error occurred",
-    error: process.env.NODE_ENV === "development" ? err.message : {},
+    error: process.env.NODE_ENV === "production" ? {} : err.message,
   });
 });
 
