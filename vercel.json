@@ -29,7 +29,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "index.html"
     }
   ]
 }
