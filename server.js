@@ -24,7 +24,7 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"],
+        defaultSrc: ["'self'", "https://vercel.live"],
         scriptSrc: [
           "'self'",
           "'unsafe-inline'",
@@ -38,13 +38,16 @@ app.use(
         ],
         styleSrc: ["'self'", "'unsafe-inline'"],
         imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'", "https://chronocamm.vercel.app"],
+        connectSrc: [
+          "'self'",
+          "https://chronocamm.vercel.app",
+          "https://vercel.live",
+        ],
       },
     },
     referrerPolicy: { policy: "strict-origin-when-cross-origin" },
   })
 );
-
 // Database Connection
 const connectDB = async () => {
   try {
@@ -95,6 +98,12 @@ app.use(passport.session());
 
 // Routes
 setupAuthRoutes(app);
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Server is running",
+    status: "healthy",
+  });
+});
 app.use("/auth", manualAuthRoutes);
 app.use("/api", userRoutes);
 app.use("/upload", uploadRoutes);
