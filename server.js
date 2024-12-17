@@ -40,7 +40,7 @@ app.use(
         imgSrc: ["'self'", "data:", "https:"],
         connectSrc: [
           "'self'",
-          "https://chronocamm.vercel.app",
+          "https://chronocamm.vercel.app/",
           "https://vercel.live",
         ],
       },
@@ -62,7 +62,7 @@ const connectDB = async () => {
 // CORS Configuration
 app.use(
   cors({
-    origin: "https://chronocamm.vercel.app",
+    origin: "https://chronocamm.vercel.app/",
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
