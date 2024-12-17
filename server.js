@@ -6,6 +6,8 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import MongoStore from "connect-mongo";
+import path from "path";
+import { fileURLToPath } from "url";
 
 // Import route handlers
 import setupAuthRoutes from "./src/routes/authGoogle.js";
@@ -62,7 +64,11 @@ const connectDB = async () => {
 // CORS Configuration
 app.use(
   cors({
-    origin: "https://chronocamm.vercel.app",
+    origin: [
+      "https://chronocamm.vercel.app",
+      "https://www.chronocamm.vercel.app",
+      "http://localhost:3000",
+    ],
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -109,6 +115,23 @@ app.use("/api", userRoutes);
 app.use("/upload", uploadRoutes);
 app.use("/images", imageRoutes);
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Move this block BEFORE the global error handler
+if (process.env.NODE_ENV === "production") {
+  const distPath = path.join(__dirname, "dist");
+
+  // Serve static files
+  app.use(express.static(distPath));
+
+  // Handle React routing, return all requests to React app
+  // This should be the LAST route, so place it after all other routes
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+  });
+}
+
 // Global Error Handler
 app.use((err, req, res, next) => {
   console.error("Unhandled Error:", err);
@@ -140,16 +163,3 @@ process.on("SIGINT", async () => {
     process.exit(1);
   }
 });
-
-// At the end of your server configuration, add:
-if (process.env.NODE_ENV === "production") {
-  const path = require("path");
-
-  // Serve static files from frontend build
-  app.use(express.static(path.join(__dirname, "frontend/dist")));
-
-  // For any route not handled by API, serve the React app
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend/dist/index.html"));
-  });
-}
