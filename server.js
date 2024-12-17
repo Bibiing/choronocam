@@ -18,6 +18,32 @@ dotenv.config();
 
 const app = express();
 
+// Security Middleware
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://accounts.google.com",
+          "https://vercel.live",
+        ],
+        scriptSrcElem: [
+          "'self'",
+          "https://accounts.google.com",
+          "https://vercel.live",
+        ],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", "data:", "https:"],
+        connectSrc: ["'self'", "https://chronocamm.vercel.app"],
+      },
+    },
+    referrerPolicy: { policy: "strict-origin-when-cross-origin" },
+  })
+);
+
 // Database Connection
 const connectDB = async () => {
   try {
@@ -31,27 +57,6 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
-
-// Security Middleware
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          "https://accounts.google.com",
-          "https://vercel.live",
-        ],
-        styleSrc: ["'self'", "'unsafe-inline'"],
-        imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: ["'self'", "https://chronocamm.vercel.app"],
-      },
-    },
-    referrerPolicy: { policy: "strict-origin-when-cross-origin" },
-  })
-);
 
 // CORS Configuration
 app.use(
