@@ -21,6 +21,9 @@ dotenv.config();
 
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Security Middleware
 app.use(
   helmet({
@@ -117,15 +120,11 @@ app.use("/api", userRoutes);
 app.use("/upload", uploadRoutes);
 app.use("/images", imageRoutes);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 if (process.env.NODE_ENV === "production") {
+  // Ensure this points to the correct static file directory
   const distPath = path.join(__dirname, "dist");
-  console.log(`Serving static files from: ${distPath}`);
-  console.log("Current directory:", __dirname);
-  console.log("Environment:", process.env.NODE_ENV);
-  console.log("Dist path:", path.join(__dirname, "dist"));
+  console.log("Serving static files from:", distPath);
+
   // Serve static files
   app.use(express.static(distPath));
 
