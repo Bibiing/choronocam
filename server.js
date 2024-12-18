@@ -120,20 +120,11 @@ app.use("/images", imageRoutes);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-if (process.env.NODE_ENV === "production") {
-  const distPath = path.join(__dirname, "dist");
-  console.log(`Serving static files from: ${distPath}`);
-  console.log("Current directory:", __dirname);
-  console.log("Environment:", process.env.NODE_ENV);
-  console.log("Dist path:", path.join(__dirname, "dist"));
-  // Serve static files
-  app.use(express.static(distPath));
-
-  // Catch-all route for SPA
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(distPath, "index.html"));
-  });
-}
+// Serve static files and handle SPA routing
+app.use(express.static(path.join(__dirname, "dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 // Global Error Handler
 app.use((err, req, res, next) => {
