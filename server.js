@@ -121,12 +121,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV === "production") {
-  const distPath = path.join(__dirname, process.env.DIST_PATH || "dist");
-  console.log(`dispath: ${distPath}`);
+  const distPath = path.join(__dirname, "dist");
+  console.log(`Serving static files from: ${distPath}`);
+  console.log("Current directory:", __dirname);
+  console.log("Environment:", process.env.NODE_ENV);
+  console.log("Dist path:", path.join(__dirname, "dist"));
   // Serve static files
   app.use(express.static(distPath));
 
-  // Handle React routing, return all requests to React app
+  // Catch-all route for SPA
   app.get("*", (req, res) => {
     res.sendFile(path.join(distPath, "index.html"));
   });
