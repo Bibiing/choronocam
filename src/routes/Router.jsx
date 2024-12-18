@@ -6,7 +6,7 @@ import SignInPage from "../pages/SignInPage";
 import ErrorPage from "../pages/ErrorPage";
 import RouterErrorBoundary from "./RouterErrorBoundary";
 import VerifyEmail from "../components/SignUp/VeryfyEmail";
-import ProfilePage from '../pages/ProfilePage';
+import ProfilePage from "../pages/ProfilePage";
 import LoginSuccess from "../components/loginsuccess";
 
 const routes = [
@@ -28,28 +28,33 @@ const routes = [
   },
   {
     path: "/verify-email",
-    element: <VerifyEmail/>,
+    element: <VerifyEmail />,
   },
   {
     path: "*",
     element: <ErrorPage />,
   },
   {
-    path: '/Profile',
+    path: "/Profile",
     element: <ProfilePage />,
   },
   {
-    path: '/login-success',
+    path: "/login-success",
     element: <LoginSuccess />,
   },
 ];
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      element: <RouterErrorBoundary />,
+      children: routes,
+    },
+  ],
   {
-    element: <RouterErrorBoundary />,
-    children: routes,
-  },
-]);
+    basename: "/",
+  }
+);
 
 const Routes = () => <RouterProvider router={router} />;
 
