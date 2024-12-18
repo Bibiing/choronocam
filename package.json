@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "build": "vite build",
-    "vercel-build": "npm run build",
+    "vercel-build": "vite build",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server.js",
     "client": "vite",
